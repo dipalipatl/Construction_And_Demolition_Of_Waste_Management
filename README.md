@@ -10,7 +10,11 @@ Waste management or waste disposal includes the processes and actions required t
 Air- Waste while disassembled generates dust and large particulates. It affects the respiratory health of waste management workers.
 water- Landfills are not enough capable to hold waste and compounds leach to the ground and then groundwater gets toxified due to heavy metals.
 Soil- Soil of the area is directly contaminated by the waste or during recycling or disposal. Waste consisting of lead mercury, cadmium, and arsenic has a bad impact on soil and then on the water.
+
+
 ![download](https://user-images.githubusercontent.com/91109615/204626362-11b72307-4f66-43b5-997e-f19e2af84c99.jpg)
+
+
 
 # Results
 1. To segregate it from municipal waste.
