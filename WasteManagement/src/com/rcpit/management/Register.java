@@ -64,11 +64,11 @@ public class Register extends HttpServlet {
 	        int rs = ps1.executeUpdate();
 	        if (rs>0)
 	        {
-	        	response.sendRedirect("signin.html");
+	        	response.sendRedirect("userlogin.html");
 	        }
 	        else
 	        {
-	        	response.sendRedirect("signin.html");
+	        	response.sendRedirect("errorpage.html");
 	        }
 
 		    

@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.rcpit.management.ConnectionDB;
-
 /**
- * Servlet implementation class Login
+ * Servlet implementation class UserLogin
  */
-public class Login extends HttpServlet {
+public class UserLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public UserLogin() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -39,7 +38,6 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		System.out.println("hihi");
 		
 		String email= request.getParameter("email");
 		String password= request.getParameter("password");
@@ -47,19 +45,16 @@ public class Login extends HttpServlet {
 		try
 		{
 			Connection conn = ConnectionDB.connect();
-			PreparedStatement ps = conn.prepareStatement("select * from login where email=? and password=?");
+			PreparedStatement ps = conn.prepareStatement("select * from userlogin where email=? and password=?");
 			ps.setString(1,email);
 			ps.setString(2,password);
 	        ResultSet rs = ps.executeQuery();
-	        System.out.println("email"+email+"pass"+password);
 	        if(rs.next())
 	        {
-	        	System.out.println("13");
-	        	response.sendRedirect("vehiclereg.html");
+	        	response.sendRedirect("requestcnd.html");
 	        }
 	        else
 	        {
-	        	System.out.println("130000");
 	        	response.sendRedirect("errorpage.html");
 	        }
 
@@ -70,6 +65,6 @@ public class Login extends HttpServlet {
 		}
 	}
 		
-}
+	}
 
 

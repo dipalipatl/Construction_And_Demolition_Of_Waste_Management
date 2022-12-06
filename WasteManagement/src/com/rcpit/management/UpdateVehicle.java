@@ -3,25 +3,23 @@ package com.rcpit.management;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.rcpit.management.ConnectionDB;
-
 /**
- * Servlet implementation class Login
+ * Servlet implementation class UpdateVehicle
  */
-public class Login extends HttpServlet {
+public class UpdateVehicle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public UpdateVehicle() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -39,37 +37,40 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		System.out.println("hihi");
 		
-		String email= request.getParameter("email");
-		String password= request.getParameter("password");
 		
+		String name= request.getParameter("name");
+		String mobile= request.getParameter("mobile");
+		int number = Integer.parseInt(request.getParameter("number"));
+		
+Connection conn = ConnectionDB.connect();
+        
+        {
 		try
 		{
-			Connection conn = ConnectionDB.connect();
-			PreparedStatement ps = conn.prepareStatement("select * from login where email=? and password=?");
-			ps.setString(1,email);
-			ps.setString(2,password);
-	        ResultSet rs = ps.executeQuery();
-	        System.out.println("email"+email+"pass"+password);
-	        if(rs.next())
+			PreparedStatement ps1 = conn.prepareStatement("Update vehicle set name=?,mobile=? where number=?");
+			ps1.setString(1,name);
+			ps1.setString(2,mobile);
+			ps1.setInt(3,number);
+		
+			
+	        int rs = ps1.executeUpdate();
+	        if (rs>0)
 	        {
-	        	System.out.println("13");
-	        	response.sendRedirect("vehiclereg.html");
+	        	response.sendRedirect("update.html");
 	        }
 	        else
 	        {
-	        	System.out.println("130000");
 	        	response.sendRedirect("errorpage.html");
 	        }
 
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		    
+		    }
+		    catch(Exception e)
+		    {
+			        System.out.println(e);
+		    }
+        }
 	}
-		
+
 }
-
-

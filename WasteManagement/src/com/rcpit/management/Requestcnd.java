@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.rcpit.management.ConnectionDB;
-
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Requestcnd
  */
-public class Login extends HttpServlet {
+public class Requestcnd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Requestcnd() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -39,37 +38,43 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		System.out.println("hihi");
 		
-		String email= request.getParameter("email");
-		String password= request.getParameter("password");
+		String address = request.getParameter("address");
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		
+		String status = "Pending";
+		System.out.println("address");
+		System.out.println("title");
+		System.out.println("description");
 		
 		try
 		{
 			Connection conn = ConnectionDB.connect();
-			PreparedStatement ps = conn.prepareStatement("select * from login where email=? and password=?");
-			ps.setString(1,email);
-			ps.setString(2,password);
-	        ResultSet rs = ps.executeQuery();
-	        System.out.println("email"+email+"pass"+password);
-	        if(rs.next())
+			PreparedStatement ps = conn.prepareStatement("insert into requestcnd (address,title,description,status) values(?,?,?,?)");
+			ps.setString(1,address);
+			ps.setString(2,title);
+			ps.setString(3,description);
+			ps.setString(4,status);
+			int rs = ps.executeUpdate();
+			System.out.println("result");
+	        if (rs>0)
 	        {
-	        	System.out.println("13");
-	        	response.sendRedirect("vehiclereg.html");
+	        	Thread.sleep(800);
+	        	System.out.println("True");
+	        	response.sendRedirect("viewcndreq.jsp");
 	        }
 	        else
 	        {
-	        	System.out.println("130000");
-	        	response.sendRedirect("errorpage.html");
+	        	response.sendRedirect("requestcnd.html");
 	        }
 
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+		    
+		    }
+		    catch(Exception e)
+		    {
+			        System.out.println(e);
+		    }
 	}
-		
+
 }
-
-
