@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>WasteManagement</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>Welcome.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -38,5 +38,35 @@
   <servlet-mapping>
     <servlet-name>VehicleDetails</servlet-name>
     <url-pattern>/VehicleDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserLogin</display-name>
+    <servlet-name>UserLogin</servlet-name>
+    <servlet-class>com.rcpit.management.UserLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserLogin</servlet-name>
+    <url-pattern>/UserLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Requestcnd</display-name>
+    <servlet-name>Requestcnd</servlet-name>
+    <servlet-class>com.rcpit.management.Requestcnd</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Requestcnd</servlet-name>
+    <url-pattern>/Requestcnd</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateVehicle</display-name>
+    <servlet-name>UpdateVehicle</servlet-name>
+    <servlet-class>com.rcpit.management.UpdateVehicle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateVehicle</servlet-name>
+    <url-pattern>/UpdateVehicle</url-pattern>
   </servlet-mapping>
 </web-app>
